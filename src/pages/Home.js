@@ -1,14 +1,15 @@
+import PropTypes from 'prop-types';
 import styles from '../styles/home.module.css';
 
 const Home = ({ posts }) => {
   return (
     <div className={styles.postsList}>
       {posts.map((post) => (
-        <div className={styles.postWrapper}>
+        <div className={styles.postWrapper } key={`post-${post._id}`}>
           <div className={styles.postHeader}>
             <div className={styles.postAvatar}>
               <img
-                src="https://image.flaticon.com/icons/svg/2154/2154651.svg"
+                src="https://cdn-icons-png.flaticon.com/128/924/924915.png"
                 alt="user-pic"
               />
               <div>
@@ -21,7 +22,7 @@ const Home = ({ posts }) => {
             <div className={styles.postActions}>
               <div className={styles.postLike}>
                 <img
-                  src="https://image.flaticon.com/icons/svg/1077/1077035.svg"
+                  src="https://cdn-icons-png.flaticon.com/128/1077/1077035.png"
                   alt="likes-icon"
                 />
                 <span>5</span>
@@ -29,7 +30,7 @@ const Home = ({ posts }) => {
 
               <div className={styles.postCommentsIcon}>
                 <img
-                  src="https://image.flaticon.com/icons/svg/1380/1380338.svg"
+                  src="https://cdn-icons-png.flaticon.com/128/1380/1380338.png"
                   alt="comments-icon"
                 />
                 <span>2</span>
@@ -56,5 +57,9 @@ const Home = ({ posts }) => {
     </div>
   );
 };
+
+Home.propTypes = {
+    posts: PropTypes.array.isRequired,
+}
 
 export default Home;
