@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 import { getPosts } from '../api';
 import { Home } from '../pages';
-import { Loader, Navbar } from './';
+import { Loader, Navbar, Comment } from './';
 
 function App() {
   const [posts, setPosts] = useState([]);
