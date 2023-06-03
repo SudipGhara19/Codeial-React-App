@@ -49,3 +49,10 @@ export const getPosts = (page = 1, limit = 6) => {
     method: 'GET',
   });
 };
+
+export const login = (email, password) => {
+    return customFetch(API_URLS.login(), {
+        method: 'POST',
+        bosy: {email, password},
+    })
+}
