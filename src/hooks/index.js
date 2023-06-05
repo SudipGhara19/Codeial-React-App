@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useState, useEffect } from 'react';
 
 import { AuthContext } from '../providers/AuthProvider';
 import { login as userLogin } from '../api';
@@ -11,6 +11,18 @@ export const useAuth = () => {
 export const useProviderAuth = () => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const userToken = getItemFromLocalStorage(LOCALSTORAGE_TOKEN_KEY);
+
+    if (userToken) {
+      const user = jwt(userToken);
+
+      setUser(user);
+    }
+
+    setLoading(false);
+  }, []);
 
   const login = async (email, password) => {
     const response = await userLogin(email, password);
