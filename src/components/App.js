@@ -24,19 +24,19 @@ function App() {
   // const [loading, setLoading] = useState(true);
   const auth = useAuth();
 
-  useEffect(() => {
-    const fetchPosts = async () => {
-      const response = await getPosts();
+  // useEffect(() => {
+  //   const fetchPosts = async () => {
+  //     const response = await getPosts();
 
-      if (response.success) {
-        setPosts(response.data.posts);
-      }
+  //     if (response.success) {
+  //       setPosts(response.data.posts);
+  //     }
 
-      setLoading(false);
-    };
+  //     setLoading(false);
+  //   };
 
-    fetchPosts();
-  }, []);
+  //   fetchPosts();
+  // }, []);
 
   if (auth.loading) {
     return <Loader />;
@@ -49,7 +49,7 @@ function App() {
         <Navbar/>
         
         <Routes>
-          <Route exact path="/" element={<Home posts={posts} />} />
+          <Route exact path="/" element={< Home />} />
 
           <Route exact path='/login' element={<Login/>}/>
 
