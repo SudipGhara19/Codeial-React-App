@@ -71,7 +71,7 @@ const Settings = () => {
     <div className={styles.settings}>
       <div className={styles.imgContainer}>
         <img
-          src="https://image.flaticon.com/icons/svg/2154/2154651.svg"
+          src="https://cdn-icons-png.flaticon.com/128/3177/3177440.png"
           alt=""
         />
       </div>

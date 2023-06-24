@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes,Route, Navigate } from 'react-router-do
 
 import { getPosts } from '../api';
 import { useAuth } from '../hooks';
-import { Home, Login, Signup, Settings } from '../pages';
+import { Home, Login, Signup, Settings, UserProfile } from '../pages';
 import { Loader, Navbar, Comment } from './';
 
 
@@ -70,6 +70,11 @@ function App() {
           <Route
             path='/settings'
             element={<PrivateRoute> <Settings/> </PrivateRoute>}
+          />
+
+          <Route
+            path='/user/:userId'
+            element={<PrivateRoute> <UserProfile/> </PrivateRoute>}
           />
 
         </Routes>
