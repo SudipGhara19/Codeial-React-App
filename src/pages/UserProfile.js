@@ -5,12 +5,13 @@ import {Loader} from "../components";
 import styles from '../styles/settings.module.css';
 import { useAuth } from '../hooks';
 import { useEffect, useState } from 'react';
-import { fetchUserProfile } from '../api';
+import { addFriend, fetchUserProfile } from '../api';
 
 
 const UserProfile = () => {
   const [user, setUser] = useState({});
   const [loading, setLoading] = useState(true);
+  const [requestInProgress, setRequestInProgress] = useState(false);
   const { userId } = useParams();
   const { addToast } = useToasts();
   const history = useNavigate();
@@ -48,7 +49,29 @@ const UserProfile = () => {
     }
     return false;
   }
-  // const showAddFriendsBtn = checkIfUserIsAFriend();
+ 
+  const handleRemoveFriendClick = () => {}
+
+  
+  const handleAddFriendClick = async() => {
+    setRequestInProgress(true);
+
+    const response = await addFriend(userId);
+    if(response.success){
+      const { friendship } = response.data;
+
+      auth.updateUserFriends(true, friendship);
+      addToast('Friend Added Successfully!', {
+        appearance: 'success',
+      });
+    }else{
+      addToast(response.message,{
+        appearance: 'error',
+      });
+    }
+    setRequestInProgress(false);
+  }
+
 
   return (
     <div className={styles.settings}>
@@ -72,9 +95,16 @@ const UserProfile = () => {
 
       <div className={styles.btnGrp}>
         {checkIfUserIsAFriend() ? (
-        <button className={`button ${styles.saveBtn}`}>Remove friend</button>
+        <button className={`button ${styles.saveBtn}`} 
+        onClick={handleRemoveFriendClick}>
+          {requestInProgress ? 'Removing Friend...' : 'Remove Friend'}
+          </button>
         ):(
-        <button className={`button ${styles.saveBtn}`}>Add friend</button>
+        <button className={`button ${styles.saveBtn}`} 
+          onClick={handleAddFriendClick} 
+          disabled={requestInProgress}>
+            {requestInProgress ? 'Adding Friend...' : 'Add Friend'}
+          </button>
         )}
         
       </div>

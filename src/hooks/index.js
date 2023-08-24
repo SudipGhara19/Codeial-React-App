@@ -2,7 +2,7 @@ import { useContext, useState, useEffect, useRef } from 'react';
 import jwt from 'jwt-decode';
 
 import { AuthContext } from '../providers/AuthProvider';
-import { login as userLogin, register, editProfile, fetchUserFriends } from '../api';
+import { login as userLogin, register, editProfile, fetchUserFriends, addFriend } from '../api';
 import {
   setItemInLocalStorage,
   LOCALSTORAGE_TOKEN_KEY,
@@ -114,11 +114,21 @@ export const useProviderAuth = () => {
     removeItemFromLocalStorage(LOCALSTORAGE_TOKEN_KEY);
   };
 
+  const updateUserFriends = (addFriend, friend) => {
+    if(addFriend){
+      setUser({
+        ...user,
+        friends: [...user.friends, friend],
+      })
+    }
+  }
+
   return {
     user,
     login,
     logout,
     loading,
     signup,
+    updateUserFriends,
   };
 };
