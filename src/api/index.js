@@ -54,7 +54,7 @@ export const getPosts = (page = 1, limit = 6) => {
 export const login = (email, password) => {
     return customFetch(API_URLS.login(), {
         method: 'POST',
-        bosy: {email, password},
+        body: {email, password},
     })
 }
 
@@ -72,3 +72,9 @@ export const editProfile = async (userId, name, email, password, confirmPassword
       body: { id: userId, name, email, password, confirm_password: confirmPassword },
     });
 };
+
+export const fetchUserProfile = (userId) => {
+    return customFetch(API_URLS.userInfo(userId), {
+        method: 'GET',
+    })
+}
