@@ -121,6 +121,13 @@ export const useProviderAuth = () => {
         friends: [...user.friends, friend],
       })
     }
+
+    const newFriends = user.friends.filter(((f) => f.to_user._id !== friend.to_user._id));
+
+    setUser({
+      ...user,
+      friends: newFriends,
+    })
   }
 
   return {
