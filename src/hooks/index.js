@@ -145,7 +145,7 @@ export const usePosts = () => {
   return useContext(PostsContext);
 };
 
-export const useProviderPosts = () => {
+export const useProvidePosts = () => {
   const [posts, setPosts] = useState(null);
   const [loading, setLoading] = useState(true);
 
